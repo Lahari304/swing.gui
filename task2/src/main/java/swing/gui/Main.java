@@ -7,13 +7,14 @@ import javax.swing.*;
 class OnlineTest2 extends JFrame implements ActionListener
 {
     JLabel label;
-    JRadioButton option[]=new JRadioButton[5];
+    JRadioButton [] option=new JRadioButton[5];
     JButton b1,b2;
     ButtonGroup bg;
     int count=0,current=0,result=0;
-    int answers[]=new int[10];
+    int [] answers=new int[10];
 
     OnlineTest2(JLabel label){
+        setTitle("Results");
         add(label);
         label.setBounds(30,40,450,20);
 
@@ -25,6 +26,7 @@ class OnlineTest2 extends JFrame implements ActionListener
     }
     OnlineTest2()
     {
+        setTitle("Mock Quiz");
         setAnswers();
 
         label=new JLabel();
@@ -156,9 +158,9 @@ class OnlineTest2 extends JFrame implements ActionListener
         for(int i=0,j=0;i<=90;i+=30,j++)
             option[j].setBounds(50,80+i,200,20);
     }
-    public static void main(String s[])
-    {
 
+    public static void main(String [] s)
+    {
         new OnlineTest2();
     }
 
