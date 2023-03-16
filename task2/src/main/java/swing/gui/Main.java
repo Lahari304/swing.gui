@@ -10,20 +10,9 @@ class OnlineTest2 extends JFrame implements ActionListener
     JRadioButton [] option=new JRadioButton[5];
     JButton b1,b2;
     ButtonGroup bg;
-    int count=0,current=0,result=0;
+    int current=0,result=0;
     int [] answers=new int[10];
 
-    OnlineTest2(JLabel label){
-        setTitle("Results");
-        add(label);
-        label.setBounds(30,40,450,20);
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
-        setLocation(250,100);
-        setVisible(true);
-        setSize(600,350);
-    }
     OnlineTest2()
     {
         setTitle("Mock Quiz");
@@ -42,13 +31,16 @@ class OnlineTest2 extends JFrame implements ActionListener
         b1.addActionListener(this);
         add(b1);
 
-        b2=new JButton("Submit");
+        b2=new JButton("Result");
         b2.addActionListener(this);
         add(b2);
+        b2.setEnabled(false);
 
         set();
 
         b1.setBounds(100,240,100,30);
+
+        b2.setBounds(400, 300, 120, 50);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
@@ -67,17 +59,13 @@ class OnlineTest2 extends JFrame implements ActionListener
 
         if(e.getSource()==b1)
         {
-            count=count+1;
             current++;
             set();
         }
         else if(e.getSource()==b2){
-            removeAll(); repaint();
-            add(label);
-            label.setText("Answers submitted! Your Score is: "+result+"/"+answers.length);
-            label.setBounds(30,40,450,20);
             setVisible(false);
-            new OnlineTest2(label);
+            JOptionPane.showMessageDialog(this,"Correct Answers= "+result);
+            System.exit(0);
         }
     }
 
@@ -121,8 +109,8 @@ class OnlineTest2 extends JFrame implements ActionListener
         }
         if(current==4)
         {
-            label.setText("Que5: Which institute is best for java coaching");
-            option[0].setText("Guru99");option[1].setText("ABC");option[2].setText("XYZ");option[3].setText("123");
+            label.setText("Que5: Should Pineapple on pizza be legal?");
+            option[0].setText("Agree");option[1].setText("Strongly Agree");option[2].setText("Agree Pro");option[3].setText("Agree Pro Max");
         }
         if(current==5)
         {
@@ -149,10 +137,8 @@ class OnlineTest2 extends JFrame implements ActionListener
             label.setText("Que10: Which one among these is not a valid component");
             option[0].setText("JButton");option[1].setText("JList");option[2].setText("JButtonGroup");option[3].setText("JTextArea");
 
-            remove(b1);
-            repaint();
-
-            b2.setBounds(400, 300, 120, 50);
+            b1.setEnabled(false);
+            b2.setEnabled(true);
         }
         label.setBounds(30,40,450,20);
         for(int i=0,j=0;i<=90;i+=30,j++)
